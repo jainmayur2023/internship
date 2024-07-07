@@ -1,0 +1,314 @@
+#.1. Write a Python program to replace all occurrences of a space, comma, or dot with a colon.
+import re
+str="mayur is a good,boy."
+a=re.sub(",|[.]|\s",":",str)
+print(a)
+
+#2.Create a dataframe using the dictionary below and remove everything (commas (,), !, XXXX, ;, etc.) from the columns except words.
+import pandas as pd
+data = {'SUMMARY': ['hello, world!', 'XXXXX test', '123four, five:; six...']}
+df=pd.DataFrame(data=data)
+df['SUMMARY'] = df['SUMMARY'].str.replace('[^a-zA-Z\s]', '', regex=True)
+print (df)
+
+#3.Create a function in python to find all words that are at least 4 characters long in a string. The use of the re.compile() method is mandatory
+import re
+str="mayur is a good boy. he goest school. He likes his teacher very much"
+def fourandmore(str):
+    expr=re.compile("\w{4,}")
+    a=re.findall(expr,str)
+    return a
+ 
+b=fourandmore(str)
+print(b)
+
+#4.Create a function in python to find all three, four, and five character words in a string. The use of the re.compile() method is mandatory.
+import re
+str="mayur is a good boy. he goest school. He likes his teacher very much"
+def threetofive(str):
+    expr=re.compile(r"\b\w{3,5}\b")
+    a=re.findall(expr,str)
+    return a
+ 
+b=threetofive(str)
+print(b)
+
+#5.Create a function in Python to remove the parenthesis in a list of strings. The use of the re.compile() method is mandatory.
+import re
+str="mayur is a (very) (good) boy. he goes to (school).(hellow world). He likes his (teacher verymuch.com)"
+def removeparenthesis(str):
+    expr=re.compile("[()]")
+    a=re.sub(expr,"",str)
+    return a
+ 
+b=removeparenthesis(str)
+print(b)
+
+
+#6-Write a python program to remove the parenthesis area from the text stored in the text file using Regular Expression.
+f=open("abc.txt",'r')
+print(f.read())
+
+def Removeparenarea(str):
+    expr=re.compile("\([^()]*\)")
+    a=re.sub(expr,"",str)
+    return a
+ 
+b=Removeparenarea(str)
+print(b)
+f.close()
+
+#7. Write a regular expression in Python to split a string into uppercase letters.
+import re
+str= "ImportanceOfRegularExpressionsInPython"
+def Uppercase(str):
+        expr=re.compile("[A-Z][^A-Z]*")
+        a=re.findall(expr,str)
+        return a
+ 
+b=Uppercase(str)
+print(b)
+
+
+#7. Write a regular expression in Python to split a string into uppercase letters.
+import re
+str= "ImportanceOfRegularExpressionsInPython"
+def Uppercase(str):
+        expr=re.compile("[A-Z][^A-Z]*")
+        a=re.findall(expr,str)
+        return a
+ 
+b=Uppercase(str)
+print(b)
+
+
+#8Create a function in python to insert spaces between words starting with numbers.
+import re
+str="RegularExpression1IsAn2ImportantTopic3InPython"
+def numberfunc(str):
+    expr=re.compile("([A-Za-z]+)(\d+)")
+    a=re.sub(expr,r'\1 \2',str)
+    return a
+
+b=numberfunc(str)
+print(b)
+
+
+#9. Create a function in python to insert spaces between words starting with capital letters or with numbers.
+str="RegularExpression15IsAn2ImportantTopic3InPython"
+def numberfunc(str):
+    expr=re.compile("([A-Z]+)|(\d+)")
+    a=re.sub(expr,r' \1\2',str)
+    return a
+
+b=numberfunc(str)
+print(b)
+
+#10.Use the github link below to read the data and create a dataframe. After creating the dataframe extract the first 6 letters of each country and store in the dataframe under a new column called first_five_letters.
+import pandas as pd
+url = "https://raw.githubusercontent.com/dsrscientist/DSData/master/happiness_score_dataset.csv"
+df = pd.read_csv(url)
+df['first_five_letters'] = df['Country'].apply(lambda a: a[:6])
+df.head()
+
+#11.- Write a Python program to match a string that contains only upper and lowercase letters, numbers, and underscores.
+import re
+str=["Regularexpression86good_","Regularexpression87good#"]
+for i in str:
+    b=re.findall("^[\w_]*$", i)
+    print(b)
+
+
+#12.Write a Python program where a string will start with a specific number
+import re
+str="mayur2(very)3(good)5Boy. he5goes To6(school).(hellow world). He likes his (teacher very.com) Much"
+def specificnumber(str):
+    a=re.findall(r"2.*",str)
+    return a
+ 
+b=specificnumber(str)
+print(b)
+
+#13.Write a Python program to remove leading zeros from an IP address
+import re
+str="mayur2(very)3(good)5Boy0000000. he5goes0000 To6(school).(hellow world). He likes his (teacher very.com) Much"
+def Leadingzero(str):
+    a=re.sub('[0]{1,}', '', str)
+
+    return a
+ 
+b=Leadingzero(str)
+print(b)
+
+#14.Write a regular expression in python to match a date string in the form of Month name followed by day number and year stored in a text file.
+f=open("abc.txt",'r')
+print(f.read())
+def ExtractDates(str):
+    pat=re.compile(r"\b([A-Z][a-z]+) \d{1,2}(?:st|nd|rd|th)? \d{4}\b")
+    a=re.findall(pat,str)
+
+    return a
+b=ExtractDates(str)
+print(b)
+f.close()
+
+#15- Write a Python program to search some literals strings in a string. 
+import re
+literals = [ 'fox', 'dog', 'horse' ]
+string = 'The quick brown fox jumps over the lazy dog.'
+for i in literals:
+    if re.search(i,  string):
+        print(i,'literal Matched!')
+    else:
+        print(i,'literal Not Matched!')
+
+#16.- Write a Python program to search a literals string in a string and also find the location within the original string where the pattern occurs
+literal= 'fox'
+str = 'The quick brown fox jumps over the lazy dog.'
+match = re.search(literal,str)
+s = match.start()
+e = match.end()
+print(s,e)
+
+17- Write a Python program to find the substrings within a string.
+import re
+string='Python exercises, PHP exercises, C# exercises'
+substr="exercises"
+for i in re.findall(substr,string):
+    print(i)
+
+#18- Write a Python program to find the occurrence and position of the substrings within a string.
+import re
+string='Python exercises, PHP exercises, C# exercises'
+substr="exercises"
+for i in re.finditer(substr,string):
+    print(i.group(0))
+    print("positionin a string:", i.start())
+
+#19. Write a Python program to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.
+import re
+str=" 2024-07-05"
+def fourandmore(str):
+    a=re.sub('(\d{4})-(\d{1,2})-(\d{1,2})', '\\3-\\2-\\1', str)
+
+    return a
+ 
+b=fourandmore(str)
+print(b)
+
+#20.Create a function in python to find all decimal numbers with a precision of 1 or 2 in a string. The use of the re.compile() method is mandatory.
+import re
+str=" 01.12 0132.123 2.31875 145.8 3.01 27.25 0.25"
+def decimal(str):
+    pat=re.compile('\d+\.\d{1,2}')
+    a=re.findall(pat,str)
+
+    return a
+ 
+b=decimal(str)
+print(b)
+
+#21..Write a Python program to separate and print the numbers and their position of a given string.
+import re
+str="The following 23example creates an 123ArrayList with a capacity of 50 elements. 4 elements are then added to the ArrayList and the ArrayList is trimmed accordingly."
+for i in re.finditer("\d+", str):
+    print(i.group(0))
+    print("positionin a string:", i.start())
+
+#22.Write a regular expression in python program to extract maximum/largest numeric value from a string.
+str='xyu12cvb567dnd789001jdjf78900'
+a= re.findall('\d+', str)
+number = map(int, a)
+print("Max_value:",max(a))
+
+#23. Create a function in python to insert spaces between words starting with capital letters.
+import re
+str="RegularExpressionIsAnImportantTopicInPython"
+def SpaceAfterCapitalWord(str):
+          pat=re.compile(r"(\w)([A-Z])")
+          return re.sub(pat, r"\1 \2", str)
+
+a=SpaceAfterCapitalWord(str)
+print(a)
+
+#24.Python regex to find sequences of one upper case letter followed by lower case letters
+import re
+str="Regular Expression Is An Important Topic In Python"
+b=re.findall("[A-Z][a-z]+", str)
+print(b)
+
+25.Write a Python program to remove continuous duplicate words from Sentence using Regular Expression.
+import re
+str="Hello World World world Bye Bye"
+def removeduplicate(str):
+            pat=re.compile(r"\b(\w+)( \1\b)+")
+            a=re.sub(pat,r'\1',str)
+            return a
+ 
+b=removeduplicate(str)
+print(b)
+
+26.Write a python program using RegEx to accept string ending with alphanumeric character.
+import re
+str="Hello123%"
+def alphanumerics(str):
+    pat=re.compile(r"\w*$")
+    a=re.findall(pat,str)
+
+    return a
+ 
+b=alphanumerics(str)
+print(b)
+
+
+#27-Write a python program using RegEx to extract the hashtags.
+import re
+str="RT @kapil_kausik: #Doltiwal I mean #xyzabc is hurt by #Demonetization as the same has rendered USELESS <ed><U+00A0><U+00BD><ed><U+00B1><U+0089> acquired funds No wo"
+def hashtag(str):
+    pat=re.compile(r"#\w+")
+    a=re.findall(pat,str)
+
+    return a
+ 
+b=hashtag(str)
+print(b)
+
+
+#28.Write a python program using RegEx to remove <U+..> like symbols
+import re
+str="@Jags123456 Bharat band on 28??<ed><U+00A0><U+00BD><ed><U+00B8><U+0082>Those who  are protesting #demonetization  are all different party leaders"
+def RemoveU(str):
+    pat=re.compile(r"U\+\w+")
+    a=re.sub(pat,"",str)
+    return a
+ 
+b=RemoveU(str)
+print(b)
+
+
+#29- Write a python program to extract dates from the text stored in the text file.
+import re
+#str="Ron was born on 12-09-1992 and he was admitted to school 15-12-1999."
+f=open("abc.txt",'r')
+data=f.read()
+print(data)
+pat=re.compile(r"\d{1,2}-\d{1,2}-\d{4}")
+a=re.findall(pat,data)
+print(a)
+f.close()
+
+
+#30-Create a function in python to remove all words from a string of length between 2 and 4.
+import re
+str="The following example creates an ArrayList with a capacity of 50 elements. 4 elements are then added to the ArrayList and the ArrayList is trimmed accordingly."
+def Removestring24(str):
+    pat=re.compile(r"\b\w{2,4}\b")
+    a=re.sub(pat,"",str)
+
+    return a
+ 
+b=Removestring24(str)
+print(b)
+
+
+
